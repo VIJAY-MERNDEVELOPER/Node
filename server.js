@@ -24,7 +24,7 @@ if (!fs.existsSync(newFolder)) {
 // const fileName = `${year}${month}${date}${hrs}${min}${sec}${milliSec}`;
 // console.log(fileName);
 
-app.get("/createFile", (req, res) => {
+app.post("/createFile", (req, res) => {
   const year = currentTime.getFullYear();
   const month = currentTime.getMonth() + 1;
   const date = currentTime.getDate();
@@ -41,8 +41,12 @@ app.get("/createFile", (req, res) => {
       res.status(500).send(`Error creating File: ${err}`);
       return;
     }
-    res.status(200).send(`File created Successfully:$`);
+    res.status(200).send(`File created Successfully:${fileName}`);
   });
+});
+
+app.get("/getFiles", (req, res) => {
+  fs.readFile("");
 });
 
 app.listen(PORT, () => {
