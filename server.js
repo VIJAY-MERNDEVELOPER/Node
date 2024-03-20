@@ -7,6 +7,7 @@ const app = express();
 const PORT = 3001;
 const currentTime = new Date();
 const newFolder = "./textFolder";
+console.log(currentTime);
 
 if (!fs.existsSync(newFolder)) {
   fs.mkdirSync(newFolder);
@@ -25,13 +26,14 @@ if (!fs.existsSync(newFolder)) {
 // console.log(fileName);
 
 app.get("/createFile", (req, res) => {
-  const year = currentTime.getFullYear();
-  const month = currentTime.getMonth() + 1;
-  const date = currentTime.getDate();
-  const hrs = currentTime.getHours();
-  const min = currentTime.getMinutes();
-  const sec = currentTime.getSeconds();
-  const milliSec = currentTime.getMilliseconds();
+  const currentTime = new Date();
+  const year = currentTime.getFullYear().toString();
+  const month = (currentTime.getMonth() + 1).toString();
+  const date = currentTime.getDate().toString();
+  const hrs = currentTime.getHours().toString();
+  const min = currentTime.getMinutes().toString();
+  const sec = currentTime.getSeconds().toString();
+  const milliSec = currentTime.getMilliseconds().toString();
   //   const day = currentTime.getDay();
 
   const fileName = `${year}${month}${date}${hrs}${min}${sec}${milliSec}`;
@@ -50,10 +52,9 @@ app.get("/getFiles", (req, res) => {
     if (err) {
       res.status(500).send(`Error reading files: ${err}`);
       return;
-    } else {
-      const textFiles = files.filter((file) => path.extname(file) === ".txt");
-      res.json(textFiles);
     }
+    const textFiles = files.filter((file) => path.extname(file) === ".txt");
+    res.json(textFiles);
   });
 });
 
