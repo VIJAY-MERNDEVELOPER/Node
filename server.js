@@ -46,7 +46,15 @@ app.post("/createFile", (req, res) => {
 });
 
 app.get("/getFiles", (req, res) => {
-  fs.readFile("");
+  fs.readdir(newFolder, (err, files) => {
+    if (err) {
+      res.status(500).send(`Error reading files: ${err}`);
+      return;
+    } else {
+      const textFiles = files.filter((file) => path.extname(file) === ".txt");
+      res.json(textFiles);
+    }
+  });
 });
 
 app.listen(PORT, () => {
