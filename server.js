@@ -13,19 +13,7 @@ if (!fs.existsSync(newFolder)) {
   fs.mkdirSync(newFolder);
 }
 
-// const year = currentTime.getFullYear();
-// const month = currentTime.getMonth() + 1;
-// const date = currentTime.getDate();
-// const hrs = currentTime.getHours();
-// const min = currentTime.getMinutes();
-// const sec = currentTime.getSeconds();
-// const milliSec = currentTime.getMilliseconds();
-// const day = currentTime.getDay();
-
-// const fileName = `${year}${month}${date}${hrs}${min}${sec}${milliSec}`;
-// console.log(fileName);
-
-app.get("/createFile", (req, res) => {
+app.post("/createFile", (req, res) => {
   const currentTime = new Date();
   const year = currentTime.getFullYear().toString();
   const month = (currentTime.getMonth() + 1).toString();
