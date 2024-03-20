@@ -24,7 +24,7 @@ if (!fs.existsSync(newFolder)) {
 // const fileName = `${year}${month}${date}${hrs}${min}${sec}${milliSec}`;
 // console.log(fileName);
 
-app.post("/createFile", (req, res) => {
+app.get("/createFile", (req, res) => {
   const year = currentTime.getFullYear();
   const month = currentTime.getMonth() + 1;
   const date = currentTime.getDate();
