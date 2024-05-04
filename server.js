@@ -1,9 +1,11 @@
 // import the express library
+const { isUtf8 } = require("buffer");
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
 const app = express();
+
 const PORT = 3001;
 const currentTime = new Date();
 const newFolder = "./textFolder";
@@ -13,7 +15,7 @@ if (!fs.existsSync(newFolder)) {
   fs.mkdirSync(newFolder);
 }
 
-app.post("/createFile", (req, res) => {
+app.get("/createFile", (req, res) => {
   const currentTime = new Date();
   const year = currentTime.getFullYear().toString();
   const month = (currentTime.getMonth() + 1).toString();
@@ -49,3 +51,12 @@ app.get("/getFiles", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running in PORT : ${PORT}`);
 });
+
+for (let index = 0; index < 10; index++) {
+  const currentTime1 = new Date().toISOString();
+  fs.writeFile(`./textFolder/text${index + 1}.txt`, currentTime1, (err) => {
+    console.log("Create File");
+  });
+}
+
+fs.readFile;
