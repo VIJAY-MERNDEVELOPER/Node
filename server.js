@@ -52,11 +52,4 @@ app.listen(PORT, () => {
   console.log(`Server is running in PORT : ${PORT}`);
 });
 
-for (let index = 0; index < 10; index++) {
-  const currentTime1 = new Date().toISOString();
-  fs.writeFile(`./textFolder/text${index + 1}.txt`, currentTime1, (err) => {
-    console.log("Create File");
-  });
-}
-
 fs.readFile;
